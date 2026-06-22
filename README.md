@@ -39,3 +39,39 @@ Make sure you have `PortAudio` installed on your system before setting up PyAudi
    ```bash
    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
    cd your-repo-name
+Install the required libraries:
+
+Bash
+pip install pyaudio numpy matplotlib ipympl
+🚀 How It Works
+The workflow inside the core notebook (voice_recognize.ipynb) follows these standard signal processing steps:
+
+Initialization: Instantiates the PyAudio object and sets the buffer window size (sabad = 1024).
+
+Stream Configuration: Opens a hardware channel with the following characteristics:
+
+Python
+format = pyaudio.paInt16  # 16-bit resolution
+channels = 1              # Mono channel
+rate = 16000              # 16kHz sample rate (Speech Standard)
+Chunk Processing: Iteratively reads binary stream data, converts it using np.frombuffer, and monitors standard deviation and amplitude limits.
+
+Plotting: Consolidates all frames into a singular continuous time-series vector for plotting the final raw waveform.
+
+📊 Sample Output Structure
+During execution, the script prints real-time chunk statistics in the following format:
+
+Plaintext
+[Chunk Index]   [Mean Amplitude]   [Min Amplitude]   [Max Amplitude]
+0               -48.3974609375     -1495             1145
+1               107.0048828125     -1327             1368
+2               24.0712890625      -1654             1382
+📝 Roadmap / Next Steps
+[ ] Implement Fast Fourier Transform (FFT) for real-time Frequency/Spectrum analysis.
+
+[ ] Add Mel-Frequency Cepstral Coefficients (MFCCs) feature extraction.
+
+[ ] Integrate a lightweight deep learning model (e.g., Speech Command Recognition).
+
+Developed by Amirali Afshariyan
+   
